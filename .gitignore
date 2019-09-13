@@ -1,0 +1,11 @@
+###################
+# compiled source #
+###################
+venv
+other
+embeddings_train/model/more_data_product
+embeddings_train/model_tf/more_data_product
+embeddings_torch_glove
+embeddings
+neural_translate
+.idea

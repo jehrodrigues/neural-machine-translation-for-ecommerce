@@ -1,0 +1,3 @@
+embeddings {
+  metadata_path: "/home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings_train/model_tf/tensorboard/metadata.tsv"
+}

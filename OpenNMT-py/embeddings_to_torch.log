@@ -1,0 +1,102 @@
+[2019-07-26 12:34:58,286 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/ZH_EN/corpus_treinamento/preprocessed/KDE4.atok.low.vocab.pt
+[2019-07-26 12:34:58,287 INFO] 	* source vocab: 50002 words
+[2019-07-26 12:34:58,287 INFO] 	* target vocab: 39706 words
+[2019-07-26 12:34:58,305 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/emb-EN-Glove/glove.840B.300d.txt
+[2019-07-26 12:35:36,368 INFO] 	Found 2196017 total vectors in file
+[2019-07-26 12:35:36,368 INFO] After filtering to vectors in vocab:
+[2019-07-26 12:35:36,393 INFO] 	* enc: 16174 match, 33828 missing, (32.35%)
+[2019-07-26 12:35:36,416 INFO] 	* dec: 32202 match, 7504 missing, (81.10%)
+[2019-07-26 12:35:36,417 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/vectors-en-torch.dec.pt
+[2019-07-26 12:35:37,555 INFO] 
+Done.
+[2019-07-26 12:36:43,098 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/ZH_EN/corpus_treinamento/preprocessed/KDE4.atok.low.vocab.pt
+[2019-07-26 12:36:43,098 INFO] 	* source vocab: 50002 words
+[2019-07-26 12:36:43,098 INFO] 	* target vocab: 39706 words
+[2019-07-26 12:36:43,116 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/emb-EN-Glove/glove.840B.300d.txt
+[2019-07-26 12:37:23,653 INFO] 	Found 2196017 total vectors in file
+[2019-07-26 12:37:23,656 INFO] After filtering to vectors in vocab:
+[2019-07-26 12:37:23,673 INFO] 	* enc: 16174 match, 33828 missing, (32.35%)
+[2019-07-26 12:37:23,693 INFO] 	* dec: 32202 match, 7504 missing, (81.10%)
+[2019-07-26 12:37:23,694 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/vectors-en-torch.dec.pt
+[2019-07-26 12:37:24,842 INFO] 
+Done.
+[2019-08-19 10:25:23,678 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/Corpus_FAPESP_v2/corpus_treinamento/pt-en/preprocessed/fapesp-v2.atok.low.vocab.pt
+[2019-08-19 10:25:23,679 INFO] 	* source vocab: 50002 words
+[2019-08-19 10:25:23,679 INFO] 	* target vocab: 50004 words
+[2019-08-19 10:25:23,747 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/word2vec/GoogleNews-vectors-negative300.bin
+[2019-08-19 10:27:57,282 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/Corpus_FAPESP_v2/corpus_treinamento/pt-en/preprocessed/fapesp-v2.atok.low.vocab.pt
+[2019-08-19 10:27:57,283 INFO] 	* source vocab: 50002 words
+[2019-08-19 10:27:57,283 INFO] 	* target vocab: 50004 words
+[2019-08-19 10:27:57,314 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/glove.6B.300d.txt
+[2019-08-19 10:28:07,474 INFO] 	Found 400000 total vectors in file
+[2019-08-19 10:28:07,475 INFO] After filtering to vectors in vocab:
+[2019-08-19 10:28:07,493 INFO] 	* enc: 25903 match, 24099 missing, (51.80%)
+[2019-08-19 10:28:07,505 INFO] 	* dec: 6151 match, 43853 missing, (12.30%)
+[2019-08-19 10:28:07,506 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/vectors-en-torch.dec.pt
+[2019-08-19 10:28:08,550 INFO] 
+Done.
+[2019-08-19 10:30:48,848 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/Corpus_FAPESP_v2/corpus_treinamento/pt-en/preprocessed/fapesp-v2.atok.low.vocab.pt
+[2019-08-19 10:30:48,848 INFO] 	* source vocab: 50002 words
+[2019-08-19 10:30:48,849 INFO] 	* target vocab: 50004 words
+[2019-08-19 10:30:48,886 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/840B.300/glove.840B.300d.txt
+[2019-08-19 10:32:05,701 INFO] 	Found 2196017 total vectors in file
+[2019-08-19 10:32:05,710 INFO] After filtering to vectors in vocab:
+[2019-08-19 10:32:05,771 INFO] 	* enc: 43811 match, 6191 missing, (87.62%)
+[2019-08-19 10:32:05,809 INFO] 	* dec: 20085 match, 29919 missing, (40.17%)
+[2019-08-19 10:32:05,809 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/840B.300/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/840B.300/vectors-en-torch.dec.pt
+[2019-08-19 10:32:10,266 INFO] 
+Done.
+[2019-08-19 10:35:32,823 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/Corpus_FAPESP_v2/corpus_treinamento/pt-en/preprocessed/fapesp-v2.atok.low.vocab.pt
+[2019-08-19 10:35:32,823 INFO] 	* source vocab: 50002 words
+[2019-08-19 10:35:32,823 INFO] 	* target vocab: 50004 words
+[2019-08-19 10:35:32,905 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/42B.300/glove.42B.300d.txt
+[2019-08-19 10:36:51,953 INFO] 	Found 1917494 total vectors in file
+[2019-08-19 10:36:51,957 INFO] After filtering to vectors in vocab:
+[2019-08-19 10:36:52,008 INFO] 	* enc: 27056 match, 22946 missing, (54.11%)
+[2019-08-19 10:36:52,061 INFO] 	* dec: 12855 match, 37149 missing, (25.71%)
+[2019-08-19 10:36:52,062 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/42B.300/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/42B.300/vectors-en-torch.dec.pt
+[2019-08-19 10:36:53,702 INFO] 
+Done.
+[2019-08-23 16:08:43,094 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/EN_PT-BR/corpus_treinamento/preprocessed/fapesp-v2.atok.low.vocab.pt
+[2019-08-23 16:08:43,094 INFO] 	* source vocab: 50002 words
+[2019-08-23 16:08:43,095 INFO] 	* target vocab: 50004 words
+[2019-08-23 16:08:43,161 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/word2vec/word2vec_s300.txt
+[2019-08-23 16:08:48,725 INFO] 	Found 33721 total vectors in file
+[2019-08-23 16:08:48,726 INFO] After filtering to vectors in vocab:
+[2019-08-23 16:08:48,759 INFO] 	* enc: 4909 match, 45093 missing, (9.82%)
+[2019-08-23 16:08:48,784 INFO] 	* dec: 9208 match, 40796 missing, (18.41%)
+[2019-08-23 16:08:48,785 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/word2vec/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/word2vec/vectors-en-torch.dec.pt
+[2019-08-23 16:08:50,397 INFO] 
+Done.
+[2019-08-26 09:57:01,685 INFO] From: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/EN_PT-BR/corpus_treinamento/preprocessed/fapesp-v2.atok.low.vocab.pt
+[2019-08-26 09:57:01,686 INFO] 	* source vocab: 50002 words
+[2019-08-26 09:57:01,686 INFO] 	* target vocab: 50004 words
+[2019-08-26 09:57:01,759 INFO] Reading encoder and decoder embeddings from /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/glove_s300.txt
+[2019-08-26 09:58:21,182 INFO] 	Found 929605 total vectors in file
+[2019-08-26 09:58:21,183 INFO] After filtering to vectors in vocab:
+[2019-08-26 09:58:21,245 INFO] 	* enc: 17444 match, 32558 missing, (34.89%)
+[2019-08-26 09:58:21,314 INFO] 	* dec: 32523 match, 17481 missing, (65.04%)
+[2019-08-26 09:58:21,314 INFO] 
+Saving embedding as:
+	* enc: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/vectors-en-torch.enc.pt
+	* dec: /home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings/glove/vectors-en-torch.dec.pt
+[2019-08-26 09:58:27,252 INFO] 
+Done.
