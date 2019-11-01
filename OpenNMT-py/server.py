@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import configargparse
-
+import re
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from onmt.translate import TranslationServer, ServerModelError
 
 STATUS_OK = "ok"
@@ -19,6 +20,7 @@ def start(config_file,
         return newroute
 
     app = Flask(__name__)
+    CORS(app)
     app.route = prefix_route(app.route, url_root)
     translation_server = TranslationServer()
     translation_server.start(config_file)
@@ -75,14 +77,36 @@ def start(config_file,
         inputs = request.get_json(force=True)
         out = {}
         try:
+            src_lower = inputs[0]['src'].lower()
             translation, scores, n_best, times = translation_server.run(inputs)
+            print('Source: ', inputs[0]['src']) #src_lower
+            print('Source normal: ', inputs[0]['src_upper'])
+            src = inputs[0]['src_upper'].split()
+            print('Source len: ', len(src))
+            print('Target: ', translation[0])
+            tgt = translation[0].split()
+            print('Target len: ', len(tgt))
+            re_output = re.sub(r'\b(\w+)( \1\b)+', r'\1', translation[0])
+            re_output = re_output.replace('@', '')
+            tgt_preprocess = re_output.split()
+            print('Before sentence: ', re_output)
+            print('**********************************************************************')
+            for word_tgt in tgt_preprocess:
+                #print(word_tgt)
+                for word_src in src:
+                    #print(word_src)
+                    if word_tgt == word_src.lower():
+                        #print(word_tgt, ' == ', word_src.lower())
+                        re_output = re_output.replace(word_tgt, word_src)
+
+            print('Final sentence: ', re_output)
+
             assert len(translation) == len(inputs)
             assert len(scores) == len(inputs)
-
-            out = [[{"src": inputs[i]['src'], "tgt": translation[i],
+            out = [[{"src": inputs[i]['src'], "tgt": re_output,
                      "n_best": n_best,
                      "pred_score": scores[i]}
-                    for i in range(len(translation))]]
+                    for i in range(len(translation))]] #translation[i]
         except ServerModelError as e:
             out['error'] = str(e)
             out['status'] = STATUS_ERROR

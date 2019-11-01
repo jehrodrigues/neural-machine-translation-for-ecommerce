@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Forgot Password</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+  <!-- clara #69ECC4 -->
+  <!-- media #54C6B4 -->
+  <!-- escura #266461 -->
+  <!-- escura opt2 #231F20 -->
+
+  <style>
+    .bg-gradient-primary {
+      background-color: #69ECC4;
+      background-image: -webkit-gradient(linear,left top,left bottom,color-stop(10%,#69ECC4),to(#54C6B4));
+      background-image: linear-gradient(180deg,#69ECC4 10%,#54C6B4 100%);
+      background-size: cover;
+    }
+    .btn-primary, .btn-primary:hover {
+      color: #fff;
+      background-color: #266461;
+      border-color: #266461;
+    }
+
+    form.user .btn-user {
+      font-size: .8rem;
+      border-radius: 0;
+      padding: .75rem 1rem;
+      height: 37px;
+    }
+
+    .form-control {
+      border-radius: 0;
+    }
+
+    .col-lg-2-custom, .col-lg-6-custom {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .form-group-custom {
+      margin-bottom: 0.45rem;
+    }
+  </style>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-12 col-lg-12 col-md-2">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="pt-3 pl-3">
+                  <form class="user">
+                    <div class="form-group form-group-custom">
+                      <select class="form-control" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                        <option>ENGLISH</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-2 col-lg-2-custom">
+                <div class="pt-3">
+                  <form class="user">
+                    <button class="btn btn-primary btn-user btn-block" type="button">
+                      <i class="fas fa-long-arrow-alt-right"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="pt-3 pr-3">
+                  <form class="user">
+                    <div class="form-group form-group-custom">
+                      <select class="form-control" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                        <option>PORTUGUESE</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-lg-6-custom">
+                <div class="pl-4">
+                  <form class="user">
+                    <div class="form-group">
+                      <textarea rows="8" cols="20" class="form-control " id="inputText" aria-describedby="emailHelp" placeholder="" style="border-right: 0px !important;"></textarea>
+                    </div>                    
+                  </form>
+                </div>
+              </div>
+              <div class="col-lg-6 col-lg-6-custom">
+                <div class="pr-4">
+                  <form class="user">
+                    <div class="form-group">
+                      <textarea rows="8" cols="20" class="form-control " id="outputText" aria-describedby="emailHelp" placeholder=""></textarea>
+                    </div>                    
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <script type="text/javascript">
+    $('form.user button').on('click', function(){
+      var inputText = $("#inputText").val();
+      var url = "http://0.0.0.0:5000/translator/translate";
+      <!-- 35.239.52.167:5000-->
+      <!-- .toLowerCase()-->
+      inputText = inputText.replace("\"","\\\"")
+      $.post(url, "[{\"src\": \"" + inputText.toLowerCase().trim() + "\", \"src_upper\": \"" + inputText.trim() + "\", \"id\": 100}]").done(function( data ) {
+          $("#outputText" ).val(data[0][0].tgt);
+       });
+    })
+  </script>
+
+</body>
+
+</html>
