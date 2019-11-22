@@ -12,4 +12,4 @@ python3 $OPEN_NMT_PATH/translate.py \
     -src $TEST_PATH/nmte.pt-en.test-a.en.atok \
     -tgt $TEST_PATH/nmte.pt-en.test-a.pt.atok \
     -replace_unk \
-    -output $TEST_PATH/nmte.output
+    -output $TEST_PATH/nmte.output.pt

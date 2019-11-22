@@ -8,9 +8,9 @@ TGT_LAN=pt
 # Training
 echo "Training with biLSTM"
 python3 $OPEN_NMT_PATH/train.py \
-    -data $TRAIN_PATH/preprocessed/fapesp-v2.atok.low \
+    -data $TRAIN_PATH/preprocessed/nmte.atok.low \
     -save_model $DATA_PATH/nmt_model/nmt_model \
-    -gpuid 0 \
+    #-gpu_ranks 0 \ #Use gpu_ranks for GPU training
     -word_vec_size 300 \
     -pre_word_vecs_enc vectors-en-torch.enc.pt \
     -pre_word_vecs_dec vectors-en-torch.dec.pt

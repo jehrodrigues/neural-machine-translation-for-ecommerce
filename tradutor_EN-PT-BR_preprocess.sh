@@ -29,9 +29,9 @@ done
 # Preprocessing
 echo "Preprocessing"
 python3 $OPEN_NMT_PATH/preprocess.py \
-    -train_src $TRAIN_PATH/fapesp-v2.pt-en.train.en.atok \
-    -train_tgt $TRAIN_PATH/fapesp-v2.pt-en.train.pt.atok \
-    -valid_src $TRAIN_PATH/fapesp-v2.pt-en.dev.en.atok \
-    -valid_tgt $TRAIN_PATH/fapesp-v2.pt-en.dev.pt.atok \
-    -save_data $TRAIN_PATH/preprocessed/fapesp-v2.atok.low \
+    -train_src $TRAIN_PATH/nmte.pt-en.train.en.atok \
+    -train_tgt $TRAIN_PATH/nmte.pt-en.train.pt.atok \
+    -valid_src $TRAIN_PATH/nmte.pt-en.dev.en.atok \
+    -valid_tgt $TRAIN_PATH/nmte.pt-en.dev.pt.atok \
+    -save_data $TRAIN_PATH/preprocessed/nmte.atok.low \
     -lower

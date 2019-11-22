@@ -7,9 +7,8 @@ TGT_LAN=pt
 
 # Training
 echo "Training with Transformer"
-
 python3  $OPEN_NMT_PATH/train.py \
-        -data $TRAIN_PATH/preprocessed/fapesp-v2.atok.low \
+        -data $TRAIN_PATH/preprocessed/nmte.atok.low \
         -save_model $DATA_PATH/nmt_model/nmt_model \
         -layers 6 \
         -rnn_size 512 \
@@ -19,7 +18,7 @@ python3  $OPEN_NMT_PATH/train.py \
         -encoder_type transformer \
         -decoder_type transformer \
         -position_encoding \
-        -train_steps 200000 \
+        -train_steps 100000 \
         -max_generator_batches 2 \
         -dropout 0.1 \
         -batch_size 4096 \
@@ -30,15 +29,15 @@ python3  $OPEN_NMT_PATH/train.py \
         -adam_beta2 0.998 \
         -decay_method noam \
         -warmup_steps 8000 \
-        -learning_rate 2 \
+        -learning_rate 1 \
         -max_grad_norm 0 \
         -param_init 0 \
         -param_init_glorot \
         -label_smoothing 0.1 \
         -valid_steps 10000 \
         -save_checkpoint_steps 10000 \
-        -world_size 4 \
-        -gpu_ranks 1
+        -world_size 1 #\
+        #-gpu_ranks 0 #Use gpu_ranks for GPU training
 
 # Transformer Architecture
 """

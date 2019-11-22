@@ -94,3 +94,4 @@ Werkzeug==0.15.5
 widgetsnbextension==3.5.1
 wrapt==1.11.2
 flask==1.1.1
+Flask-Cors==3.0.8

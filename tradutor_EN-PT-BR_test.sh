@@ -30,9 +30,9 @@ done
 echo "Calculating ROUGE"
 cd $OPEN_NMT_PATH
 python3 -m tools.test_rouge \
-      -c </absolute/path>$TEST_PATH/nmte.output.atok \
-      -r </absolute/path>$TEST_PATH/nmte.pt-en.test-a.pt.atok
+      -c ../$TEST_PATH/nmte.output.pt.atok \
+      -r ../$TEST_PATH/nmte.pt-en.test-a.pt.atok
 
 echo "Calculating BLEU"
 cd ..
-perl $OPEN_NMT_PATH/tools/multi-bleu.perl $TEST_PATH/nmte.pt-en.test-a.pt.atok < $TEST_PATH/nmte.output.atok
+perl $OPEN_NMT_PATH/tools/multi-bleu.perl $TEST_PATH/nmte.pt-en.test-a.pt.atok < $TEST_PATH/nmte.output.pt.atok
