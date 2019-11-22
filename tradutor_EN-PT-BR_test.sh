@@ -5,56 +5,34 @@ TEST_PATH=$DATA_PATH/corpus_teste
 SRC_LAN=en
 TGT_LAN=pt
 
-# Teste
-echo "Testando"
-python3 $OPEN_NMT_PATH/translate.py \
-    -model $DATA_PATH/trained_model/nmt_model_*_100000.pt \
-    -src $TEST_PATH/fapesp-v2.pt-en.test-a.en.atok \
-    -tgt $TEST_PATH/fapesp-v2.pt-en.test-a.pt.atok \
-    -replace_unk \
-    -output $TEST_PATH/fapesp-v2.pt-en.test-a.output
+# Test
+echo "Testing"
 
-python3 $OPEN_NMT_PATH/translate.py \
-    -model $DATA_PATH/trained_model/nmt_model_*_100000.pt \
-    -src $TEST_PATH/fapesp-v2.pt-en.test-b.en.atok \
-    -tgt $TEST_PATH/fapesp-v2.pt-en.test-b.pt.atok \
-    -replace_unk \
-    -output $TEST_PATH/fapesp-v2.pt-en.test-b.output
+# Tokeniza textos
+echo "Tokenizing texts"
+for l in $SRC_LAN $TGT_LAN
+do
+    for f in $TRAIN_PATH/*.$l
+    do
+        if [ ! -f $f.atok ]; then
+            perl tokenizer.perl -a -no-escape -l $l -q  < $f > $f.atok;
+        fi
+    done
 
-# Destokenizar
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-a.detok ]; then
-    perl detokenizer.perl -l en < $TEST_PATH/fapesp-v2.pt-en.test-a.output > $TEST_PATH/fapesp-v2.pt-en.test-a.detok;
-fi
-if [ ! -f $TEST_PATH/fapesp-v2.en-pt.test-b.detok ]; then
-    perl detokenizer.perl -l en < $TEST_PATH/fapesp-v2.pt-en.test-b.output > $TEST_PATH/fapesp-v2.pt-en.test-b.detok;
-fi
+    for f in $TEST_PATH/*.$l
+    do
+        if [ ! -f $f.atok ]; then
+            perl tokenizer.perl -a -no-escape -l $l -q < $f > $f.atok;
+        fi
+    done
+done
 
-# Calculo BLEU
-echo "Calculando BLEU"
-# test-a
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-a.pt.sgm ]; then
-perl formata-mteval-v14.pl $TEST_PATH/fapesp-v2.pt-en.test-a.pt src en pt $TEST_PATH/fapesp-v2.pt-en.test-a.pt.sgm;
-fi
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-a.en.sgm ]; then
-perl formata-mteval-v14.pl $TEST_PATH/fapesp-v2.pt-en.test-a.en ref en pt $TEST_PATH/fapesp-v2.pt-en.test-a.en.sgm;
-fi
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-a.detok.sgm ]; then
-perl formata-mteval-v14.pl $TEST_PATH/fapesp-v2.pt-en.test-a.detok test en pt $TEST_PATH/fapesp-v2.pt-en.test-a.detok.sgm;
-fi
-perl mteval-v14.pl -r $TEST_PATH/fapesp-v2.pt-en.test-a.en.sgm \
-                   -s $TEST_PATH/fapesp-v2.pt-en.test-a.pt.sgm \
-                   -t $TEST_PATH/fapesp-v2.pt-en.test-a.detok.sgm > $TEST_PATH/test-a.bleu
+echo "Calculating ROUGE"
+cd $OPEN_NMT_PATH
+python3 -m tools.test_rouge \
+      -c </absolute/path>$TEST_PATH/nmte.output.atok \
+      -r </absolute/path>$TEST_PATH/nmte.pt-en.test-a.pt.atok
 
-# test-b
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-b.pt.sgm ]; then
-perl formata-mteval-v14.pl $TEST_PATH/fapesp-v2.pt-en.test-b.pt src en pt $TEST_PATH/fapesp-v2.pt-en.test-b.pt.sgm;
-fi
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-b.en.sgm ]; then
-perl formata-mteval-v14.pl $TEST_PATH/fapesp-v2.pt-en.test-b.en ref en pt $TEST_PATH/fapesp-v2.pt-en.test-b.en.sgm;
-fi
-if [ ! -f $TEST_PATH/fapesp-v2.pt-en.test-b.detok.sgm ]; then
-perl formata-mteval-v14.pl $TEST_PATH/fapesp-v2.pt-en.test-b.detok test en pt $TEST_PATH/fapesp-v2.pt-en.test-b.detok.sgm;
-fi
-perl mteval-v14.pl -r $TEST_PATH/fapesp-v2.pt-en.test-b.en.sgm \
-                   -s $TEST_PATH/fapesp-v2.pt-en.test-b.pt.sgm \
-                   -t $TEST_PATH/fapesp-v2.pt-en.test-b.detok.sgm > $TEST_PATH/test-b.bleu
+echo "Calculating BLEU"
+cd ..
+perl $OPEN_NMT_PATH/tools/multi-bleu.perl $TEST_PATH/nmte.pt-en.test-a.pt.atok < $TEST_PATH/nmte.output.atok

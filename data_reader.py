@@ -1,9 +1,12 @@
 import pandas as pd
+import csv
 import re
 import os
 
 PATH = '/home/jessica/Projects/NMTe/data/EN->PT-BR-ecommerce-datasets/original/preprocess/to_txt/'
+#PATH = '/home/jessica/Projects/NMTe/data/EN->PT-BR-ecommerce-datasets/original/preprocess/not/teste/'
 OUTPUT = '/home/jessica/Projects/NMTe/data/EN->PT-BR-ecommerce-datasets/original/preprocess/output/'
+#OUTPUT = '/home/jessica/Projects/NMTe/data/EN->PT-BR-ecommerce-datasets/original/preprocess/not/teste/'
 
 def read_BIGDATA_data():
     file = pd.read_csv('/home/jessica/Documents/Projects/corpora/b2w-products/results-20190822-165010.csv') #, sep = ';'
@@ -33,17 +36,20 @@ def read_EBAY_data():
                         #English
                         product_en = pen.replace('Details about ', '')
                         product_en = product_en.replace('- show original title', '')
-                        product_en = re.sub('[\W\_]', ' ', product_en)
-                        product_en = re.sub(' +', ' ', product_en)
+                        #product_en = re.sub('[\W\_]', ' ', product_en) #Remove caracteres especiais
+                        product_en = re.sub(' +', ' ', product_en) #Remove espaço duplicado
                         product_en = re.sub('[\[*\]]', ' ', product_en)
+                        product_en = re.sub(r'\b(\w+)( \1\b)+', r'\1', product_en) #Remove palavras duplicadas
                         f_en.write((str(product_en.strip().lower())) + '\n')
 
                         #Portuguese
                         product = p.replace('Detalhes sobre ', '')
                         product = product.replace('- mostrar título no original', '')
-                        product = re.sub('[\W\_]', ' ', product)
+                        product = product.replace('Novo anúncio', '')
+                        #product = re.sub('[\W\_]', ' ', product)
                         product = re.sub(' +', ' ', product)
                         product = re.sub('[\[*\]]', ' ', product)
+                        product = re.sub(r'\b(\w+)( \1\b)+', r'\1', product)
                         f.write((str(product.strip().lower())) + '\n') #.lower()
         print('finish')
         f.close()
@@ -51,29 +57,44 @@ def read_EBAY_data():
 
 
 def parallel_data_to_tsv():
-    file_pt = pd.read_csv(OUTPUT + 'ebay.pt.txt', delimiter="\n", header=None, encoding='utf-8', engine='python') #, skiprows=[14316, 18877]
-    file_en = pd.read_csv(OUTPUT + 'ebay.en.txt', delimiter="\n", header=None, encoding='utf-8', engine='python') #, error_bad_lines=False
+    OUTPUT_FILES = '/home/jessica/Projects/NMTe/data/crawler/amazon_lucas/'
+    file_pt = pd.read_csv(OUTPUT_FILES + 'amazon.pt', delimiter="\n", header=None, encoding='utf-8', engine='python') #, quoting=csv.QUOTE_NONE
+    file_en = pd.read_csv(OUTPUT_FILES + 'amazon.en', delimiter="\n", header=None, encoding='utf-8', engine='python') #, quoting=csv.QUOTE_NONE
     #print(file_en)
     df = pd.DataFrame(file_en + '\t' + file_pt)
     #df = pd.DataFrame(file_en)
     #dfpt = pd.DataFrame(file_pt)
     #df.to_csv('/home/jessica/Projects/NMTe/AutoML-Translate/data/ebay.english.txt', sep='\n', encoding='utf-8', index=False)
     #dfpt.to_csv('/home/jessica/Projects/NMTe/AutoML-Translate/data/ebay.portuguese.txt', sep='\n', encoding='utf-8', index=False)
-    df.to_csv(OUTPUT + 'nmte.en-pt.tsv', sep='\t', encoding='utf-8', index=False)
+    df.to_csv(OUTPUT_FILES + 'amazon.tsv', sep='\t', encoding='utf-8', index=False, quoting=csv.QUOTE_NONE, escapechar='¬', na_rep="£") #quoting=csv.QUOTE_NONE, , quotechar='"', escapechar='\\' sep='\t',
 
+
+def teste():
+    OUTPUT_FILES = '/home/jessica/Projects/NMTe/data/crawler/amazon_lucas/'
+    together = ''
+    with open(OUTPUT_FILES + 'amazon.tsv', 'a+', encoding='utf8') as f:
+        with open(OUTPUT_FILES + 'amazon.en') as f1, open(OUTPUT_FILES + 'amazon.pt') as f2:
+            for line_en, line_pt in zip(f1, f2):
+                together = line_en.strip() + '\t' + line_pt.strip()
+                f.write(together + '\n')
+            print('finish')
+            f.close()
+            f1.close()
+            f2.close()
 
 def clean_ebay_data():
-    OUTPUT_FILES = '/home/jessica/Projects/NMTe/data/EN->PT-BR-ecommerce-datasets/original/preprocess/output/'
-    #file_pt = pd.read_csv(OUTPUT_FILES + 'nmte.pt-en.train.pt', delimiter="\n", header=None, encoding='utf-8', engine='python') #, skiprows=[14316, 18877]
-    file_en = pd.read_csv(OUTPUT_FILES + 'nmte.pt-en.train.en', delimiter="\n", header=None, encoding='utf-8', engine='python') #, error_bad_lines=False
-    dfen = pd.DataFrame(file_en)
-    #dfpt = pd.DataFrame(file_pt)
-    product_list_en = dfen.values.tolist()
-    #product_list_pt = dfpt.values.tolist()
-    for p in product_list_en:
-        print(p.lower())
-    #dfpt.to_csv(OUTPUT_FILES + 'nmte.pt-en.train-lower.pt', sep='\n', encoding='utf-8', index=False)
-    dfen.to_csv(OUTPUT_FILES + 'nmte.pt-en.train-lower.en', sep='\n', encoding='utf-8', index=False)
+    OUTPUT_FILES = '/home/jessica/Projects/NMTe/data/crawler/amazon_lucas/'
+    with open(OUTPUT_FILES + 'amazon_pt.txt', 'r', encoding='utf8') as s:
+        with open(OUTPUT_FILES + 'amazon.pt', 'a+', encoding='utf8') as f:
+            lista = s.readlines()
+            for line in lista:
+                product_en = re.sub(' +', ' ', str(line))  # Remove espaço duplicado
+                product_en = re.sub('[\[*\]]', ' ', product_en)
+                #product_en = re.sub('[\W\_]', ' ', product_en) #Remove caracteres especiais
+                product_en = re.sub(r'\b(\w+)( \1\b)+', r'\1', product_en)  # Remove palavras duplicadas
+                f.write((product_en.strip().lower()) + '\n')
+            print('finish')
+            f.close()
 
 #def read_Amazon_data():
     #conn = psycopg2.connect(database="amazon_public", host="localhost", user="jessica", password="1234")
@@ -82,4 +103,4 @@ def clean_ebay_data():
     #conn.commit()
 
 
-parallel_data_to_tsv()
+teste()

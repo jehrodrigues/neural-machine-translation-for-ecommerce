@@ -7,13 +7,8 @@ TGT_LAN=pt
 
 mkdir -p $DATA_PATH/nmt_model $TRAIN_PATH/preprocessed
 
-# Substitui `` e '' por ""
-echo "Substituindo aspas"
-# sed -i "s/\`\`/\"/g" $TRAIN_PATH/*.en
-# sed -i "s/''/\"/g" $TRAIN_PATH/*.en
-
 # Tokeniza textos
-echo "Tokenizando textos"
+echo "Tokenizing texts"
 for l in $SRC_LAN $TGT_LAN
 do
     for f in $TRAIN_PATH/*.$l
@@ -31,8 +26,8 @@ do
     done
 done
 
-# Pre-processamento
-echo "Pre-processando"
+# Preprocessing
+echo "Preprocessing"
 python3 $OPEN_NMT_PATH/preprocess.py \
     -train_src $TRAIN_PATH/fapesp-v2.pt-en.train.en.atok \
     -train_tgt $TRAIN_PATH/fapesp-v2.pt-en.train.pt.atok \
