@@ -15,7 +15,7 @@
 ### Visualizing embeddings Tensorboard
 
 ```
-python -m tensorboard.main --logdir=./TradutorNeural/embeddings_train/model_tf/tensorboard
+python -m tensorboard.main --logdir=./model_tf/tensorboard
 ```
 
 ### Algebric Operations

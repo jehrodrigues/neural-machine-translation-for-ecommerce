@@ -20,13 +20,13 @@ EMBEDDING_DIM = model["notebook"].shape[0]
 
 w2v = np.zeros((VOCAB_SIZE, EMBEDDING_DIM))
 
-tsv_file_path = "/home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings_train/model_tf/tensorboard/metadata.tsv"
+tsv_file_path = "./model_tf/tensorboard/metadata.tsv"
 with open(tsv_file_path,'w+', encoding='utf8') as file_metadata:
     for i,word in enumerate(model.index2word[:VOCAB_SIZE]):
         w2v[i] = model[word]
         file_metadata.write(word+'\n')
 
-TENSORBOARD_FILES_PATH = "/home/jessica/Documents/Projects/NeuralTranslate/TradutorNeural/TradutorNeural/embeddings_train/model_tf/tensorboard"
+TENSORBOARD_FILES_PATH = "./model_tf/tensorboard"
 
 #Tensorflow Placeholders
 X_init = tf.placeholder(tf.float32, shape=(VOCAB_SIZE, EMBEDDING_DIM), name="embedding")
