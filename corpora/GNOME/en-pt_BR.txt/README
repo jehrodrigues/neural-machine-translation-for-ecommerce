@@ -1,0 +1,13 @@
+ Corpus Name: GNOME
+     Package: GNOME.en-pt_BR in Moses format
+     Website: http://opus.nlpl.eu/GNOME-v1.php
+     Release: v1
+Release date: Sun Dec 23 13:53:38 EET 2018
+
+This corpus is part of OPUS - the open collection of parallel corpora
+OPUS Website: http://opus.nlpl.eu
+
+Please cite the following article if you use any part of the corpus in your own work: J. Tiedemann, 2012, Parallel Data, Tools and Interfaces in OPUS. In Proceedings of the 8th International Conference on Language Resources and Evaluation (LREC 2012)
+
+A parallel corpus of GNOME localization files. Source: https://l10n.gnome.org
+

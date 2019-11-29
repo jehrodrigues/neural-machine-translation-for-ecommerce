@@ -1,0 +1,13 @@
+ Corpus Name: Ubuntu
+     Package: Ubuntu.en-pt_BR in Moses format
+     Website: http://opus.nlpl.eu/Ubuntu-v14.10.php
+     Release: v14.10
+Release date: Sun Dec 23 14:08:38 EET 2018
+
+This corpus is part of OPUS - the open collection of parallel corpora
+OPUS Website: http://opus.nlpl.eu
+
+Please cite the following article if you use any part of the corpus in your own work: J. Tiedemann, 2012, Parallel Data, Tools and Interfaces in OPUS. In Proceedings of the 8th International Conference on Language Resources and Evaluation (LREC 2012)
+
+A parallel corpus of Ubuntu localization files. Source: https://translations.launchpad.net
+
